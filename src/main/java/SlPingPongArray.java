@@ -1,4 +1,4 @@
-public class SlPingPongArray {
+public class SlPingPongArray extends SlIntArray {
     public SlIntArray cellArrayB;
     public SlIntArray nextCellArray;
     private final String DEFAULT_OUTPUT_FILE = "OutULTOutput.txt";
@@ -11,6 +11,7 @@ public class SlPingPongArray {
     public final static int DEAD = 0;
 
     public SlPingPongArray(int rows, int cols, int defaultV, int huh) {
+        super(rows, cols);
         this.nextCellArray = new SlIntArray(rows, cols);
         this.DEFAULT_VALUE = defaultV;
         this. MIN_VALUE = 0;
@@ -18,6 +19,7 @@ public class SlPingPongArray {
     }
 
     public SlPingPongArray(int rows, int cols) {
+        super(rows, cols);
         nextCellArray = new SlIntArray(rows, cols);
     }
 
