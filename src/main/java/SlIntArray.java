@@ -6,7 +6,9 @@ public class SlIntArray {
     public SlIntArray(int rows, int cols) {
         NUM_ROWS = rows;
         NUM_COLS = cols;
+        arrayData = new int[rows][cols];
     }
+
 
 
 }

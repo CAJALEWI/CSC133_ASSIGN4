@@ -21,5 +21,19 @@ public class SlPingPongArray {
         nextCellArray = new SlIntArray(rows, cols);
     }
 
+    public void swapLiveAndNext() {
+        SlIntArray tmp = nextCellArray;
+        nextCellArray = liveCellArray;
+        liveCellArray = tmp;
+    }
+
+    public void printArray() {
+        for (int row = 0; row < liveCellArray.NUM_ROWS; row++) {
+            for (int col = 0; col < liveCellArray.NUM_COLS; col++) {
+                System.out.print(liveCellArray.arrayData[row][col] + "  ");
+            }
+            System.out.println();
+        }
+    }
 
 }
