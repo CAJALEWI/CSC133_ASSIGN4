@@ -6,9 +6,10 @@ public class SlPingPongArray extends SlIntArray {
     protected int DEFAULT_VALUE;
     public SlIntArray liveCellArray;
     public int MAX_VALUE;
+    public final static int DEAD = 0;
     public final static int ALIVE = 1;
     public int MIN_VALUE;
-    public final static int DEAD = 0;
+
 
     public SlPingPongArray(int rows, int cols, int defaultV, int huh) {
         super(rows, cols);
@@ -36,6 +37,10 @@ public class SlPingPongArray extends SlIntArray {
             }
             System.out.println();
         }
+    }
+
+    public void randomizeViaFisherYatesKnuth() {
+        int [] array1D = randomizViaFisherYatesKnuth(NUM_ROWS * NUM_COLS);
     }
 
 }
