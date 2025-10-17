@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class SlIntArray {
     protected int NUM_COLS;
     protected int[][] arrayData;
@@ -17,6 +21,28 @@ public class SlIntArray {
             }
         }
         return randomArray;
+    }
+
+    public int[][] loadFile(String fileName) {
+        int[][] fileArray = new int[NUM_ROWS][NUM_COLS];
+        int row = 0;
+        int col = 0;
+        try (Scanner fileScanner = new Scanner(new File(fileName))) {
+            while (fileScanner.hasNextLine()) {
+                String fileLine = fileScanner.nextLine();
+                String [] lineNumbers = fileLine.split(" +");
+                col = lineNumbers.length;
+                //System.out.println(col);
+                System.out.println();
+                for (int i = 0; i < col; i++) {
+                    System.out.print(lineNumbers[i] + "  ");
+                }
+                row++;
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Not File Found");
+        }
+        return fileArray;
     }
 
 }

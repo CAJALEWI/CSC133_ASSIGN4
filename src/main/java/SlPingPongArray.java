@@ -1,7 +1,11 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class SlPingPongArray extends SlIntArray {
     public SlIntArray cellArrayB;
     public SlIntArray nextCellArray;
-    private final String DEFAULT_OUTPUT_FILE = "OutULTOutput.txt";
+    private final String DEFAULT_OUTPUT_FILE = "pps_data.txt";
     public SlIntArray cellArrayA;
     protected int DEFAULT_VALUE;
     public SlIntArray liveCellArray;
@@ -50,5 +54,10 @@ public class SlPingPongArray extends SlIntArray {
             nextCellArray.arrayData[rowIndex][colIndex] = array1D[arrayIndex];
         }
     }
+
+    //public int[][] loadedFile(String fileName) {
+    //    nextCellArray.loadFile(fileName);
+    //    return nextCellArray.arrayData;
+    //}
 
 }
