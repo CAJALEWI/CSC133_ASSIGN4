@@ -40,7 +40,15 @@ public class SlPingPongArray extends SlIntArray {
     }
 
     public void randomizeViaFisherYatesKnuth() {
-        int [] array1D = randomizViaFisherYatesKnuth(NUM_ROWS * NUM_COLS);
+        int [] array1D = nextCellArray.randomizViaFisherYatesKnuth(NUM_ROWS * NUM_COLS);
+        int rowIndex;
+        int colIndex;
+
+        for (int arrayIndex = 0; arrayIndex < (NUM_COLS * NUM_ROWS); arrayIndex++) {
+            rowIndex = arrayIndex / NUM_COLS;
+            colIndex = arrayIndex % NUM_COLS;
+            nextCellArray.arrayData[rowIndex][colIndex] = array1D[arrayIndex];
+        }
     }
 
 }
