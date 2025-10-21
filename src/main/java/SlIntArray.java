@@ -13,13 +13,25 @@ public class SlIntArray {
         arrayData = new int[rows][cols];
     }
 
-    public int[] randomizViaFisherYatesKnuth(int length) {
-        int [] randomArray = new int[length];
+    public int[] randomizeViaFisherYatesKnuth(int length) {
+        int [] array1D = new int[length];
+        System.out.println();
         for (int row = 0; row < NUM_ROWS; row++) {
             for (int col = 0; col < NUM_COLS; col++) {
-                randomArray[row * NUM_ROWS + col] = arrayData[row][col];
+                array1D[((row * NUM_ROWS) + col)] = arrayData[row][col];
             }
         }
+
+        int [] randomArray = SlRandomArray.randomizeIntegerArray(array1D);
+        int rowIndex;
+        int colIndex;
+
+        for (int arrayIndex = 0; arrayIndex < (NUM_COLS * NUM_ROWS); arrayIndex++) {
+            rowIndex = arrayIndex / NUM_COLS;
+            colIndex = arrayIndex % NUM_COLS;
+            arrayData[rowIndex][colIndex] = randomArray[arrayIndex];
+        }
+
         return randomArray;
     }
 
@@ -33,10 +45,10 @@ public class SlIntArray {
                 String [] lineNumbers = fileLine.split(" +");
                 col = lineNumbers.length;
                 //System.out.println(col);
-                System.out.println();
-                for (int i = 0; i < col; i++) {
-                    System.out.print(lineNumbers[i] + "  ");
-                }
+                //System.out.println();
+                //for (int i = 0; i < col; i++) {
+                //    System.out.print(lineNumbers[i] + "  ");
+                //}
                 row++;
             }
         } catch (FileNotFoundException e) {

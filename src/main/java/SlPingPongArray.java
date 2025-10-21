@@ -1,7 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class SlPingPongArray extends SlIntArray {
     public SlIntArray cellArrayB;
     public SlIntArray nextCellArray;
@@ -15,17 +11,23 @@ public class SlPingPongArray extends SlIntArray {
     public int MIN_VALUE;
 
 
-    public SlPingPongArray(int rows, int cols, int defaultV, int huh) {
+    public SlPingPongArray(int rows, int cols, int defaultV, int maxValue) {
         super(rows, cols);
-        this.nextCellArray = new SlIntArray(rows, cols);
-        this.DEFAULT_VALUE = defaultV;
-        this. MIN_VALUE = 0;
-        this. MAX_VALUE = 10;
+        nextCellArray = new SlIntArray(rows, cols);
+        cellArrayA = new SlIntArray(rows, cols);
+        cellArrayB = new SlIntArray(rows, cols);
+        liveCellArray = new SlIntArray(rows, cols);
+        DEFAULT_VALUE = defaultV;
+        MIN_VALUE = 0;
+        MAX_VALUE = maxValue;
     }
 
     public SlPingPongArray(int rows, int cols) {
         super(rows, cols);
         nextCellArray = new SlIntArray(rows, cols);
+        cellArrayA = new SlIntArray(rows, cols);
+        cellArrayB = new SlIntArray(rows, cols);
+        liveCellArray = new SlIntArray(rows, cols);
     }
 
     public void swapLiveAndNext() {
@@ -36,23 +38,17 @@ public class SlPingPongArray extends SlIntArray {
 
     public void printArray() {
         for (int row = 0; row < liveCellArray.NUM_ROWS; row++) {
+            System.out.printf("%4d|--> ", row);
             for (int col = 0; col < liveCellArray.NUM_COLS; col++) {
-                System.out.print(liveCellArray.arrayData[row][col] + "  ");
+                System.out.printf("%3d  ", liveCellArray.arrayData[row][col]);
             }
             System.out.println();
         }
     }
 
     public void randomizeViaFisherYatesKnuth() {
-        int [] array1D = nextCellArray.randomizViaFisherYatesKnuth(NUM_ROWS * NUM_COLS);
-        int rowIndex;
-        int colIndex;
-
-        for (int arrayIndex = 0; arrayIndex < (NUM_COLS * NUM_ROWS); arrayIndex++) {
-            rowIndex = arrayIndex / NUM_COLS;
-            colIndex = arrayIndex % NUM_COLS;
-            nextCellArray.arrayData[rowIndex][colIndex] = array1D[arrayIndex];
-        }
+        nextCellArray = liveCellArray;
+        nextCellArray.randomizeViaFisherYatesKnuth(NUM_ROWS * NUM_COLS);
     }
 
     //public int[][] loadedFile(String fileName) {
