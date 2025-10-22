@@ -37,20 +37,31 @@ public class SlIntArray {
 
     public int[][] loadFile(String fileName) {
         int[][] fileArray = new int[NUM_ROWS][NUM_COLS];
-        int row = 0;
-        int col = 0;
         try (Scanner fileScanner = new Scanner(new File("src/test/java/" + fileName))) {
+            int defaultValue = fileScanner.nextInt();
+            int rowMax = fileScanner.nextInt();
+            int colMax = fileScanner.nextInt();
+            fileArray = new int[rowMax][colMax];
+
             while (fileScanner.hasNextLine()) {
+                int row = fileScanner.nextInt();
+                int col = fileScanner.nextInt();
                 String fileLine = fileScanner.nextLine();
-                String [] lineNumbers = fileLine.split(" +");
-                col = lineNumbers.length;
+                String [] lineNumbers = fileLine.split("\\s+");
+                int [] rowNums = new int[rowMax];
+                for(int index = 0; index < lineNumbers.length; index++) {
+                    int parsedNum = Integer.parseInt(lineNumbers[index]);
+                    rowNums[index] = parsedNum;
+                }
+
                 //System.out.println(col);
                 //System.out.println();
                 //for (int i = 0; i < col; i++) {
                 //    System.out.print(lineNumbers[i] + "  ");
                 //}
-                row++;
+
             }
+            return fileArray;
         } catch (FileNotFoundException e) {
             System.out.println("No File Found");
         }
