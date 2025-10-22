@@ -43,29 +43,44 @@ public class SlIntArray {
             int colMax = fileScanner.nextInt();
             fileArray = new int[rowMax][colMax];
 
+            for (int row = 0; row < rowMax; row++) {
+                for (int col = 0; col < colMax; col++) {
+                    fileArray[row][col] = defaultValue;
+                }
+            }
+
             while (fileScanner.hasNextLine()) {
                 int row = fileScanner.nextInt();
                 int col = fileScanner.nextInt();
                 String fileLine = fileScanner.nextLine();
+                fileLine = fileLine.trim();
                 String [] lineNumbers = fileLine.split("\\s+");
-                int [] rowNums = new int[rowMax];
+                int numAmount = 0;
+                for(int index = 0; index < lineNumbers.length; index++) {
+                    numAmount++;
+                }
+                int [] rowNums = new int[numAmount];
                 for(int index = 0; index < lineNumbers.length; index++) {
                     int parsedNum = Integer.parseInt(lineNumbers[index]);
                     rowNums[index] = parsedNum;
+
                 }
 
-                //System.out.println(col);
-                //System.out.println();
-                //for (int i = 0; i < col; i++) {
-                //    System.out.print(lineNumbers[i] + "  ");
-                //}
-
+                int numsIndex = 0;
+                for (int arrayCol = 0; arrayCol < colMax; arrayCol++) {
+                    if (numsIndex < (rowNums.length) && arrayCol >= col) {
+                            fileArray[row][arrayCol] = rowNums[numsIndex];
+                            numsIndex++;
+                    }
+                }
             }
-            return fileArray;
+            this.arrayData = fileArray;
+            return arrayData;
         } catch (FileNotFoundException e) {
             System.out.println("No File Found");
         }
-        return fileArray;
+        this.arrayData = fileArray;
+        return arrayData;
     }
 
 }
