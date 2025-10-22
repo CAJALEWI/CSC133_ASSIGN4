@@ -51,9 +51,8 @@ public class SlPingPongArray extends SlIntArray {
         nextCellArray.randomizeViaFisherYatesKnuth(NUM_ROWS * NUM_COLS);
     }
 
-    //public int[][] loadedFile(String fileName) {
-    //    nextCellArray.loadFile(fileName);
-    //    return nextCellArray.arrayData;
-    //}
+    public int[][] loadFile(String fileName) {
+        return super.loadFile(fileName);
+    }
 
 }

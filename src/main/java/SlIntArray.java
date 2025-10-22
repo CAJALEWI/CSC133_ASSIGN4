@@ -39,7 +39,7 @@ public class SlIntArray {
         int[][] fileArray = new int[NUM_ROWS][NUM_COLS];
         int row = 0;
         int col = 0;
-        try (Scanner fileScanner = new Scanner(new File(fileName))) {
+        try (Scanner fileScanner = new Scanner(new File("src/test/java/" + fileName))) {
             while (fileScanner.hasNextLine()) {
                 String fileLine = fileScanner.nextLine();
                 String [] lineNumbers = fileLine.split(" +");
@@ -52,7 +52,7 @@ public class SlIntArray {
                 row++;
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Not File Found");
+            System.out.println("No File Found");
         }
         return fileArray;
     }
