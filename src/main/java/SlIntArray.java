@@ -83,4 +83,29 @@ public class SlIntArray {
         return arrayData;
     }
 
+    protected int[][] getClone() {
+        int[][] clonedArray = new int[NUM_ROWS][NUM_COLS];
+        int[] array1D = new int[NUM_ROWS * NUM_COLS];
+        for (int row = 0; row < NUM_ROWS; row++) {
+            for (int col = 0; col < NUM_COLS; col++) {
+                array1D[((row * NUM_ROWS) + col)] = arrayData[row][col];
+            }
+        }
+
+        int [] cloned1DArray = array1D.clone();
+
+        int rowIndex;
+        int colIndex;
+
+        for (int arrayIndex = 0; arrayIndex < (NUM_COLS * NUM_ROWS); arrayIndex++) {
+            rowIndex = arrayIndex / NUM_COLS;
+            colIndex = arrayIndex % NUM_COLS;
+            clonedArray[rowIndex][colIndex] = cloned1DArray[arrayIndex];
+        }
+        if (clonedArray == arrayData) {
+            System.out.println("hi");
+        }
+        return clonedArray;
+    }
+
 }
