@@ -65,7 +65,7 @@ public class SlPingPongArrayTest {
         return returnTestResult("ULT_201", retVal);
     }  //  private static boolean ULT_201(...)
 
-    /*
+
     // NearestNeighbor array computation
     public static boolean ULT_202() {
         boolean retVal = false;
@@ -87,6 +87,5 @@ public class SlPingPongArrayTest {
         retVal = false;
         return returnTestResult(testLabel, retVal);
     }  //  private static boolean ULT_202(...)
-    */
 }  //  class SlPingPongArrayTest
 

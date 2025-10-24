@@ -52,7 +52,17 @@ public class SlPingPongArray extends SlIntArray {
     }
 
     public int[][] loadFile(String fileName) {
-        return super.loadFile(fileName);
+        nextCellArray.loadFile(fileName);
+        swapLiveAndNext();
+        return liveCellArray.arrayData;
+    }
+
+    public void setCell(int row, int col, int value) {
+
+    }
+
+    public int getNNSum(int row, int col) {
+        return 0;
     }
 
 }
