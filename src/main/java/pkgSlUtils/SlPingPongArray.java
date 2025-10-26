@@ -84,7 +84,29 @@ public class SlPingPongArray extends SlIntArray {
     }
 
     public int getNNNSum(int row, int col) {
-        return liveCellArray.arrayData[row][col];
+        swapLiveAndNext();
+        int previousRow = row - 1;
+        int previousCol = col - 1;
+        int nextRow = row + 1;
+        int nextCol = col + 1;
+        int nnnSum = 0;
+
+        if(previousRow < 0 || previousCol < 0){
+
+        } else if(nextRow > nextCellArray.NUM_ROWS
+                || nextCol > nextCellArray.NUM_COLS) {
+
+        } else {
+            for (int blockRow = previousRow; blockRow < nextRow; blockRow++) {
+                for (int blockCol = previousCol; blockCol < nextCol; blockCol++) {
+                    nnnSum += nextCellArray.arrayData[previousRow][previousCol];
+                    if(blockRow == row && blockCol == col) {
+                        nnnSum -= nextCellArray.arrayData[previousRow][previousCol];
+                    }
+                }
+            }
+        }
+        return nnnSum;
     }
 
 }
