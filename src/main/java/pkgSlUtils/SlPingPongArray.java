@@ -10,6 +10,8 @@ public class SlPingPongArray extends SlIntArray {
     public int MAX_VALUE;
     public final static int DEAD = 0;
     public final static int ALIVE = 1;
+
+
     public int MIN_VALUE;
 
 
@@ -59,12 +61,30 @@ public class SlPingPongArray extends SlIntArray {
         return liveCellArray.arrayData;
     }
 
-    public void setCell(int row, int col, int value) {
+    public void setCellAlive(int row, int col) {
+        swapLiveAndNext();
+        nextCellArray.arrayData[row][col] += ALIVE;
+        swapLiveAndNext();
+    }
 
+    void setCellDead(int row, int col) {
+        swapLiveAndNext();
+        nextCellArray.arrayData[row][col] = DEAD;
+        swapLiveAndNext();
+    }
+
+    public void setCell(int row, int col, int value) {
+        if (value < 2) {
+            setCellDead(row, col);
+        } else if (value > 3) {
+            setCellDead(row, col);
+        } else if (value == 3) {
+            setCellAlive(row, col);
+        }
     }
 
     public int getNNNSum(int row, int col) {
-        return 0;
+        return liveCellArray.arrayData[row][col];
     }
 
 }
