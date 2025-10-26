@@ -1,3 +1,5 @@
+package pkgSlUtils;
+
 import java.util.Random;
 
 public class SlRandomArray {

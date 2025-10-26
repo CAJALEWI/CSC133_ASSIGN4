@@ -1,3 +1,5 @@
+package pkgSlUtils;
+
 public class SlPingPongArray extends SlIntArray {
     public SlIntArray cellArrayB;
     public SlIntArray nextCellArray;
@@ -11,14 +13,14 @@ public class SlPingPongArray extends SlIntArray {
     public int MIN_VALUE;
 
 
-    public SlPingPongArray(int rows, int cols, int defaultV, int maxValue) {
+    public SlPingPongArray(int rows, int cols, int defaultV, int minValue, int maxValue) {
         super(rows, cols);
         nextCellArray = new SlIntArray(rows, cols);
         cellArrayA = new SlIntArray(rows, cols);
         cellArrayB = new SlIntArray(rows, cols);
         liveCellArray = new SlIntArray(rows, cols);
         DEFAULT_VALUE = defaultV;
-        MIN_VALUE = 0;
+        MIN_VALUE = minValue;
         MAX_VALUE = maxValue;
     }
 
@@ -61,7 +63,7 @@ public class SlPingPongArray extends SlIntArray {
 
     }
 
-    public int getNNSum(int row, int col) {
+    public int getNNNSum(int row, int col) {
         return 0;
     }
 

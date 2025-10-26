@@ -1,3 +1,5 @@
+package pkgSlUtils;
+
 import static pkgDriver.ULTResult.*;
 
 public class SlPingPongArrayTest {
@@ -7,7 +9,7 @@ public class SlPingPongArrayTest {
     public static boolean ULT_200() {
         boolean retVal = false;
         int myRows = 20, myCols = 20;
-        SlPingPongArray myPPA = new SlPingPongArray(myRows, myCols, 0, 0);
+        SlPingPongArray myPPA = new SlPingPongArray(myRows, myCols, 0, 0, 77);
         for (int row = 0; row < myRows; ++row) {
             for (int col = 0; col < myCols; ++col) {
                 myPPA.nextCellArray.arrayData[row][col] = row * myCols + col;
@@ -34,10 +36,10 @@ public class SlPingPongArrayTest {
     }  //  private static boolean ULT_1(...)
 
     // Reading data from file
-    public static boolean ULT_201() {
+    public static boolean ULT_220() {
         boolean retVal = true;
         SlPingPongArray myPPA = new SlPingPongArray(7, 7);
-        myPPA.nextCellArray.loadFile("ult_input_1.txt");
+        myPPA.nextCellArray.loadFile("pkgSlUtils/ult_input_1.txt");
         myPPA.swapLiveAndNext();
         if (ULT_DEBUG) {
             System.out.println("Input array:");
@@ -62,30 +64,30 @@ public class SlPingPongArrayTest {
             }  //  for(int col = 0; col < validationData[0].length; ++col)
         }  //  for(int row = 0; row < validationData.length; ++row)
 
-        return returnTestResult("ULT_201", retVal);
+        return returnTestResult("ULT_220", retVal);
     }  //  private static boolean ULT_201(...)
 
-
     // NearestNeighbor array computation
-    public static boolean ULT_202() {
+    public static boolean ULT_240() {
         boolean retVal = false;
-        String testLabel = "ULT_202";
+        String testLabel = "ULT_240";
         SlPingPongArray myPPA = new SlPingPongArray(7, 7);
-        myPPA.loadFile("ult_input_2.txt");
+        myPPA.loadFile("pkgSlUtils/ult_input_2.txt");
         System.out.println("Input array:");
         myPPA.printArray();
 
         for (int row = 0; row < myPPA.NUM_ROWS; ++row) {
             for (int col = 0; col < myPPA.NUM_COLS; ++col) {
-                myPPA.setCell(row, col, myPPA.getNNSum(row, col));
+                myPPA.setCell(row, col, myPPA.getNNNSum(row, col));
             }  //  for(int col = 0; col < myPPA.NUM_COLS; ++col)
         }  //  for(int row = 0; row < myPPA.NUM_ROWS; ++row)
         myPPA.swapLiveAndNext();
-        System.out.println("NN Count:");
+        System.out.println("NNN Count:");
         myPPA.printArray();
 
-        retVal = false;
+        retVal = true;
         return returnTestResult(testLabel, retVal);
     }  //  private static boolean ULT_202(...)
+    
 }  //  class SlPingPongArrayTest
 
