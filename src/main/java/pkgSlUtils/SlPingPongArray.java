@@ -62,46 +62,46 @@ public class SlPingPongArray extends SlIntArray {
     }
 
     public void setCellAlive(int row, int col) {
-        swapLiveAndNext();
         nextCellArray.arrayData[row][col] += ALIVE;
-        swapLiveAndNext();
     }
 
     void setCellDead(int row, int col) {
-        swapLiveAndNext();
         nextCellArray.arrayData[row][col] = DEAD;
-        swapLiveAndNext();
     }
 
     public void setCell(int row, int col, int value) {
-        if (value < 2) {
-            setCellDead(row, col);
-        } else if (value > 3) {
-            setCellDead(row, col);
-        } else if (value == 3) {
-            setCellAlive(row, col);
-        }
+        nextCellArray.arrayData[row][col] = value;
     }
 
     public int getNNNSum(int row, int col) {
-        swapLiveAndNext();
-        int previousRow = row - 1;
-        int previousCol = col - 1;
         int nextRow = row + 1;
         int nextCol = col + 1;
         int nnnSum = 0;
+        int finalRow = liveCellArray.NUM_ROWS - 1;
+        int finalCol = liveCellArray.NUM_COLS - 1;
 
-        if(previousRow < 0 || previousCol < 0){
-
-        } else if(nextRow > nextCellArray.NUM_ROWS
-                || nextCol > nextCellArray.NUM_COLS) {
-
-        } else {
-            for (int blockRow = previousRow; blockRow < nextRow; blockRow++) {
-                for (int blockCol = previousCol; blockCol < nextCol; blockCol++) {
-                    nnnSum += nextCellArray.arrayData[previousRow][previousCol];
-                    if(blockRow == row && blockCol == col) {
-                        nnnSum -= nextCellArray.arrayData[previousRow][previousCol];
+        for (int blockRow = row - 1; blockRow <= nextRow; blockRow++) {
+            for (int blockCol = col - 1; blockCol <= nextCol; blockCol++) {
+                if (blockRow < 0 && blockCol < 0 ||
+                        blockRow < 0 && blockCol > finalCol ||
+                        blockRow > finalRow && blockCol < 0 ||
+                        blockRow > finalRow && blockCol > finalCol) {
+                    nnnSum += liveCellArray.arrayData[(blockRow + liveCellArray.NUM_ROWS)
+                            % liveCellArray.NUM_ROWS][(blockCol + liveCellArray.NUM_COLS)
+                            % liveCellArray.NUM_COLS];
+                }
+                else if (blockRow < 0 || blockRow > finalRow) {
+                    nnnSum += liveCellArray.arrayData[(blockRow + liveCellArray.NUM_ROWS)
+                            % liveCellArray.NUM_ROWS][blockCol];
+                }
+                else if (blockCol < 0 || blockCol > finalCol) {
+                    nnnSum += liveCellArray.arrayData[blockRow][(blockCol + liveCellArray.NUM_COLS)
+                            % liveCellArray.NUM_COLS];
+                }
+                else {
+                    nnnSum += liveCellArray.arrayData[blockRow][blockCol];
+                    if (blockRow == row && blockCol == col) {
+                        nnnSum -= liveCellArray.arrayData[blockRow][blockCol];
                     }
                 }
             }
