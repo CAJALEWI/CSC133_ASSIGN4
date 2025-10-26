@@ -89,21 +89,21 @@ public class SlPingPongArray extends SlIntArray {
                     nnnSum += liveCellArray.arrayData[(blockRow + liveCellArray.NUM_ROWS)
                             % liveCellArray.NUM_ROWS][(blockCol + liveCellArray.NUM_COLS)
                             % liveCellArray.NUM_COLS];
-                }
+                } // 4 corners
                 else if (blockRow < 0 || blockRow > finalRow) {
                     nnnSum += liveCellArray.arrayData[(blockRow + liveCellArray.NUM_ROWS)
                             % liveCellArray.NUM_ROWS][blockCol];
-                }
+                } // up and down
                 else if (blockCol < 0 || blockCol > finalCol) {
                     nnnSum += liveCellArray.arrayData[blockRow][(blockCol + liveCellArray.NUM_COLS)
                             % liveCellArray.NUM_COLS];
-                }
+                } // left and right
                 else {
                     nnnSum += liveCellArray.arrayData[blockRow][blockCol];
                     if (blockRow == row && blockCol == col) {
                         nnnSum -= liveCellArray.arrayData[blockRow][blockCol];
-                    }
-                }
+                    } // exclude adding middle value
+                } // everything in the middle
             }
         }
         return nnnSum;
